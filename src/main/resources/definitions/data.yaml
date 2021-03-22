@@ -1,0 +1,9 @@
+AccountDeletionData:
+  type: object
+  properties:
+    username:
+      type: string
+    userId:
+      type: string
+    eiasToken:
+      type: string

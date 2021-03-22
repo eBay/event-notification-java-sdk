@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: Notification processor
+  description: 'Provides a springboot sdk to receive and process eBay notifications.'
+  contact:
+    name: 'eBay Inc.'
+  license:
+    name: 'The Apache Software License, Version 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+  version: v1
+servers:
+  - url: '<protocol>//<host>/webhook'
+    description: Destination for receiving messages
+paths:
+  '/process':
+    post:
+      tags:
+        - message
+      description: 'This endpoint received eBay generated notifications the app is subscribe to.'
+      operationId: receive
+      parameters:
+        - name: X-EBAY-SIGNATURE
+          in: header
+          description: 'The signature associated with the message'
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: false
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/MetaData'
+        notification:
+          $ref: '#/components/schemas/BaseNotification'
+    MetaData:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: 'Topic subscribed to.'
+        schemaVersion:
+          type: string
+          description: 'The schema for this topic.'
+        deprecated:
+          type: boolean
+          description: 'If this is deprecated.'
+    BaseNotification:
+      type: object
+      properties:
+        notificationId:
+          type: string
+        eventDate:
+          type: string
+        publishDate:
+          type: string
+        publishAttemptCount:
+          type: integer
+        data:
+          $ref: '#/components/schemas/AnyData'
+    AnyData: {}
+    AccountDeletionData:
+      $ref: definitions/data.yaml#/AccountDeletionData
