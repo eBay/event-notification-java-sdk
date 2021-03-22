@@ -1,5 +1,4 @@
 Event Notification SDK 
-
 ==========
 With notifications, business moments are communicated to all interested listeners a.k.a. subscribers of those event streams. eBay's most recent notification payloads are also secured using ECC signature headers.  
 
