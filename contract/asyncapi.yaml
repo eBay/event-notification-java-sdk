@@ -2,7 +2,7 @@ asyncapi: 2.0.0
 info:
   title: eBay Notifications
   version: 1.0.0
-  description: This contract defines eBay notification for ACCOUNT_DELETION event subsciptions
+  description: This contract defines eBay notification for event subsciptions
 channels:
   ACCOUNT_DELETION:
     subscribe:
@@ -66,8 +66,8 @@ components:
           description: 'The number of attempts made to publish this message.'
         data:
           anyOf:
-            - $ref: '#/components/schemas/AccountDeletionData'
-    AccountDeletionData:
+            - $ref: '#/components/schemas/MarketplaceAccountDeletionData'
+    MarketplaceAccountDeletionData:
       type: object
       description: 'The Account Deletion payload.'
       properties:
