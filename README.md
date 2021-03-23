@@ -50,7 +50,7 @@ mvn clean install
 * Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).
 * Specify environment (PRODUCTION or SANDBOX). Default: PRODUCTION
 
-For ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
+For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
 ```
 
 **Onboard any new topic in 3 simple steps! :**
