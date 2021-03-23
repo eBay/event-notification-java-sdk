@@ -17,7 +17,7 @@ Table of contents
 # Notifications
 
 This SDK is intended for the latest eBay notifications that use ECC signatures and JSON payloads. 
-While this SDK is generic for any topics, it currently includes the schema definition for ACCOUNT_DELETION notifications. 
+While this SDK is generic for any topics, it currently includes the schema definition for MARKETPLACE_ACCOUNT_DELETION notifications. 
 
 # Motivation
 
