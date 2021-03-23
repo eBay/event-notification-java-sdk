@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: This contract defines eBay notification for event subsciptions
 channels:
-  ACCOUNT_DELETION:
+  MARKETPLACE_ACCOUNT_DELETION:
     subscribe:
       message:
         $ref: '#/components/messages/message'
@@ -65,8 +65,7 @@ components:
           type: integer
           description: 'The number of attempts made to publish this message.'
         data:
-          anyOf:
-            - $ref: '#/components/schemas/MarketplaceAccountDeletionData'
+         $ref: '#/components/schemas/MarketplaceAccountDeletionData'
     MarketplaceAccountDeletionData:
       type: object
       description: 'The Account Deletion payload.'
