@@ -9,7 +9,7 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.txt'
   version: v1
 servers:
-  - url: '<protocol>//<host>/webhook'
+  - url: 'https://<host>/webhook'
     description: Destination for receiving messages
 paths:
   '/process':

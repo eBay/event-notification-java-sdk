@@ -25,9 +25,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ebay.commerce</groupId>
-    <artifactId>notification-sdk</artifactId>
+    <artifactId>event-notification-sdk</artifactId>
     <version>1.0.0-RELEASE</version>
-    <name>demo</name>
+    <name>event-notification-sdk</name>
     <description>An openapi powered springboot application for processing eBay notifications</description>
     <developers>
         <developer>
@@ -97,11 +97,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
