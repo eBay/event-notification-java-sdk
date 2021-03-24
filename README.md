@@ -38,19 +38,22 @@ This SDK incorporates
 **Prerequisites**
 ```
 maven: version 3.5.0 (or later)
-jdk: 8
+jdk: 8 (or later)
 
-```
-**Install**
-```
-mvn clean install 
-```
 **Configure**
 ```
 * Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).
+  Client Credentials Configuration Sample: [ebay-config.yaml](samples/ebay-config.yaml).
+
 * Specify environment (PRODUCTION or SANDBOX). Default: PRODUCTION
 
+
 For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
+```
+```
+**Install and Run**
+```
+mvn spring-boot:run 
 ```
 
 **Onboard any new topic in 3 simple steps! :**
@@ -59,13 +62,6 @@ For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in Accou
 * Add a custom MessageProcessor for new topic that extends 'BaseMessageProcessor' abstract class and implement 'processInternal(T data)'
 * Register the new MessageProcessor in NotificationConfig.registerMessageProcessors()
 
-
-Run
-```
-java -jar target/notification-sdk-1.0.0-RELEASE.jar
-
-```
-Client Credentials Configuration Sample: [ebay-config.yaml](samples/ebay-config.yaml).
 
 Production deploys
 ```
