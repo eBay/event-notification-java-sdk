@@ -41,15 +41,15 @@ maven: version 3.5.0 (or later)
 jdk: 8 (or later)
 ```
 **Configure**
-```
-* Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).
+
+* Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).  
   Client Credentials Configuration Sample: [ebay-config.yaml](samples/ebay-config.yaml).
 
 * Specify environment (PRODUCTION or SANDBOX). Default: PRODUCTION
 
 
 For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
-```
+
 ```
 **Install and Run**
 ```
