@@ -74,4 +74,4 @@ components:
           $ref: '#/components/schemas/AnyData'
     AnyData: {}
     AccountDeletionData:
-      $ref: definitions/data.yaml#/AccountDeletionData
+      $ref: definitions/data.yaml#/MarketplaceAccountDeletionData
