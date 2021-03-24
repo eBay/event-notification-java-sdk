@@ -39,7 +39,7 @@ This SDK incorporates
 ```
 maven: version 3.5.0 (or later)
 jdk: 8 (or later)
-
+```
 **Configure**
 ```
 * Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).
