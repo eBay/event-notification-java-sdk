@@ -50,7 +50,7 @@ jdk: 8 (or later)
 
 For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
 
-```
+
 **Install and Run**
 ```
 mvn spring-boot:run 
@@ -63,9 +63,9 @@ mvn spring-boot:run
 * Register the new MessageProcessor in NotificationConfig.registerMessageProcessors()
 
 
-Production deploys
+Note on Production deploys
 ```
-For production deploys please enable HTTPS.
+For production, please host with HTTPS enabled.
 ```
 
 ## Logging
