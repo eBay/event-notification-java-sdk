@@ -1,4 +1,4 @@
-AccountDeletionData:
+MarketplaceAccountDeletionData:
   type: object
   properties:
     username:
