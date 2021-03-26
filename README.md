@@ -27,7 +27,7 @@ This SDK incorporates
 * A deployable application that is generic across topics and can process incoming https notifications
 * Allows registration of custom Message Processors.  
 * Declarative OpenAPI powered schema definitions and code generation
-* Verify the integrity of the incoming messages 
+* [Verify the integrity](https://github.com/eBay/event-notification-java-sdk/blob/faba02735555631189e1dca5c771fabc9646ab66/src/main/java/com/ebay/commerce/notification/utils/SignatureValidator.java#L48) of the incoming messages 
     * Use key id from the decoded signature header to fetch public key required by the verification algorithm. An LRU cache is used to prevent refetches for same 'key'.
     * On verification success, delegate processing to the registered custom message processor and respond with a 204 HTTP status code.  
     * On verification failure, respond back with a 412 HTTP status code 
@@ -60,7 +60,7 @@ mvn spring-boot:run
 
 * Add schema definition for new topic data to [data.yaml](src/main/resources/definitions/data.yaml) 
 * Add a custom MessageProcessor for new topic that extends 'BaseMessageProcessor' abstract class and implement 'processInternal(T data)'
-* Register the new MessageProcessor in NotificationConfig.registerMessageProcessors()
+* Register the new MessageProcessor in [NotificationConfig.registerMessageProcessors()](https://github.com/eBay/event-notification-java-sdk/blob/faba02735555631189e1dca5c771fabc9646ab66/src/main/java/com/ebay/commerce/notification/config/EventNotificationConfig.java#L72)
 
 
 Note on Production deploys
