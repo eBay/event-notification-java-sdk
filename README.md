@@ -48,7 +48,7 @@ jdk: 8 (or later)
 * Specify environment (PRODUCTION or SANDBOX). Default: PRODUCTION
 
 
-For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
+For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in [AccountDeletionMessageProcessor.processInternal()](https://github.com/eBay/event-notification-java-sdk/blob/main/src/main/java/com/ebay/commerce/notification/processor/AccountDeletionMessageProcessor.java) 
 
 
 **Install and Run**
@@ -59,7 +59,7 @@ mvn spring-boot:run
 **Onboard any new topic in 3 simple steps! :**
 
 * Add schema definition for new topic data to [data.yaml](src/main/resources/definitions/data.yaml) 
-* Add a custom MessageProcessor for new topic that extends 'BaseMessageProcessor' abstract class and implement 'processInternal(T data)'
+* Add a custom MessageProcessor for new topic that extends [BaseMessageProcessor](https://github.com/eBay/event-notification-java-sdk/blob/main/src/main/java/com/ebay/commerce/notification/processor/BaseMessageProcessor.java) abstract class and implement 'processInternal(T data)'
 * Register the new MessageProcessor in [NotificationConfig.registerMessageProcessors()](https://github.com/eBay/event-notification-java-sdk/blob/faba02735555631189e1dca5c771fabc9646ab66/src/main/java/com/ebay/commerce/notification/config/EventNotificationConfig.java#L72)
 
 
