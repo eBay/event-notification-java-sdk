@@ -7,7 +7,7 @@ This OpenAPI powered springboot SDK is designed to simplify processing eBay noti
 Table of contents
 ==========
 * [What Notifications are covered?](#notifications)
-* [Motivation](#motivation)
+* [Features](#features)
 * [Usage](#usage)
 * [Logging](#logging)
 * [Future enhancements](#enhancements)
@@ -21,7 +21,7 @@ While this SDK is generic for any topics, it currently includes the schema defin
 
 This SDK now also incorporates support for endpoint validation.
 
-# Motivation
+# Features
 
 This SDK is intended to bootstrap subscriptions to eBay Notifications and provides a ready springboot deployable. 
 This SDK incorporates
