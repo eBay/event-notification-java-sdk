@@ -33,7 +33,7 @@ This SDK incorporates
     * Use key id from the decoded signature header to fetch public key required by the verification algorithm. An LRU cache is used to prevent refetches for same 'key'.
     * On verification success, delegate processing to the registered custom message processor and respond with a 204 HTTP status code.  
     * On verification failure, respond back with a 412 HTTP status code 
-* Includes support for generating the challenge response required for validating this endpoint.    
+* With release 1.1.0 - includes support for generating the challenge response required for validating this endpoint.    
 More details on endpoint validation is documented here.
 
 # Usage
@@ -45,16 +45,16 @@ jdk: 8 (or later)
 ```
 **Configure**
 
-* Update application.yaml with path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).  
-  Client Credentials Configuration Sample: [ebay-config.yaml](samples/ebay-config.yaml).
+Update [application.yaml](src/main/resources/application.yaml)  with: 
+* Path to client credentials (required to fetch Public Key from /commerce/notification/v1/public_key/{public_key_id}).  
+ Sample Client Credentials Configuration: [ebay-config.yaml](samples/ebay-config.yaml).
 
-* Specify environment (PRODUCTION or SANDBOX). Default: PRODUCTION
+* Environment (PRODUCTION or SANDBOX). Default: PRODUCTION
 
-* Set the verification token associated with your endpoint. A random sample is included for your endpoint.
-  
-  It is recommended that this verification token be stored in a secure location. 
+* Verification token associated with your endpoint. A random sample is included for your endpoint.
+  It is recommended that this verification token be stored in a secure location and this needs to be the same as that provided to eBay. 
 
-* Set the endpoint for this deployment. A random url is included as an example. 
+* Endpoint specific to this deployment. A random url is included as an example. 
 
 For MARKETPLACE_ACCOUNT_DELETION use case simply implement custom logic in AccountDeletionMessageProcessor.processInternal() 
 
