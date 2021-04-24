@@ -18,7 +18,9 @@ package com.ebay.commerce.notification.controller;
 
 import com.ebay.commerce.notification.constants.TopicEnum;
 import com.ebay.commerce.notification.exceptions.*;
+import com.ebay.commerce.notification.model.ChallengeResponse;
 import com.ebay.commerce.notification.processor.MessageProcessorFactory;
+import com.ebay.commerce.notification.utils.EndpointValidator;
 import com.ebay.commerce.notification.utils.SignatureValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.openapitools.client.model.Message;
@@ -42,19 +44,36 @@ public class EventNotificationController {
     @Inject
     private SignatureValidator signatureValidator;
 
-    @PostMapping ( "/webhook")
-    public ResponseEntity process(@RequestBody Message message, @RequestHeader(required = false, value = "X-EBAY-SIGNATURE") String signatureHeader)  {
+    @Inject
+    private EndpointValidator endpointValidator;
+
+    @GetMapping("/webhook")
+    public ResponseEntity validate(@RequestParam("challenge_code") String challengeCode) {
+        if (challengeCode == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        ChallengeResponse challengeResponse = null;
         try {
-            if(signatureValidator.validate(message,signatureHeader)) {
-                 process(message);
-                 logger.info("Message processed successfully for topic:"+message.getMetadata().getTopic() +" notificationId:"+message.getNotification().getNotificationId());
-                 return ResponseEntity.noContent().build();
-             } else {
-                 return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
-             }
+            challengeResponse = endpointValidator.generateChallengeResponse(challengeCode);
+
+        } catch (MissingEndpointValidationConfig | EndpointValidationException ex) {
+            logger.error("Endpoint validation failure " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok(challengeResponse);
+    }
+
+    @PostMapping("/webhook")
+    public ResponseEntity process(@RequestBody Message message, @RequestHeader(required = false, value = "X-EBAY-SIGNATURE") String signatureHeader) {
+        try {
+            if (signatureValidator.validate(message, signatureHeader)) {
+                process(message);
+                logger.info("Message processed successfully for topic:" + message.getMetadata().getTopic() + " notificationId:" + message.getNotification().getNotificationId());
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
+            }
         } catch (SignatureValidationException | ClientException | OAuthTokenException | PublicKeyCacheException | JsonProcessingException | ProcessorNotDefined ex) {
-            logger.error("Signature validation processing failure:"+ex.getMessage());
-            return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            logger.error("Signature validation processing failure:" + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

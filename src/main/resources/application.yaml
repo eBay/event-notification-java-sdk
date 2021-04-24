@@ -1,2 +1,4 @@
 client.credentials.file: /users/snbanerjee/tmp/ebay-config.yaml
 environment: PRODUCTION
+endpoint: http://www.testendpoint.com/webhook
+verificationToken: 71745723-d031-455c-bfa5-f90d11b4f20a
