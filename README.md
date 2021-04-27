@@ -34,7 +34,7 @@ This SDK incorporates
     * On verification success, delegate processing to the registered custom message processor and respond with a 204 HTTP status code.  
     * On verification failure, respond back with a 412 HTTP status code 
 * With release 1.1.0 - includes support for generating the challenge response required for validating this endpoint.    
-More details on endpoint validation is documented here.
+More details on endpoint validation is documented [here](https://developer.ebay.com/marketplace-account-deletion).
 
 # Usage
 
