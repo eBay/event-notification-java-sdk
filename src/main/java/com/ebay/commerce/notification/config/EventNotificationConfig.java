@@ -46,11 +46,34 @@ public class EventNotificationConfig
     @Value("${environment}")
     private String environment;
 
+    @Value("${endpoint}")
+    private String endpoint;
+
+    @Value("${verificationToken}")
+    private String verificationToken;
+
+
     @Inject
     private MessageProcessorFactory processorFactory;
 
     public Environment getEnvironment() {
         return Environment.valueOf(environment);
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
     }
 
     @Override

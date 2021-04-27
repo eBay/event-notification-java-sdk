@@ -19,6 +19,8 @@ package com.ebay.commerce.notification;
 import com.ebay.commerce.notification.client.PublicKeyClient;
 import com.ebay.commerce.notification.controller.EventNotificationController;
 import com.ebay.commerce.notification.data.DataProvider;
+import com.ebay.commerce.notification.model.ChallengeResponse;
+import org.apache.commons.codec.binary.Hex;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -32,6 +34,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NotificationConsumerApplication.class)
@@ -44,7 +49,10 @@ class NotificationConsumerApplicationTest {
 	private PublicKeyClient publicKeyClient;
 
 	@Inject
-	EventNotificationController controller;
+	private EventNotificationController controller;
+
+	@Inject
+	private EventNotificationController eventNotificationController;
 
 
 	@Before
@@ -64,4 +72,20 @@ class NotificationConsumerApplicationTest {
 		ResponseEntity actualResponse = controller.process(provider.getMockTamperedMessage(),provider.getMockXEbaySignatureHeader());
 		Assert.assertEquals(HttpStatus.PRECONDITION_FAILED,actualResponse.getStatusCode());
 	}
+
+	@Test
+	public void testVerification() throws NoSuchAlgorithmException {
+		String challengeCode= "a8628072-3d33-45ee-9004-bee86830a22d";
+		String verificationToken = "71745723-d031-455c-bfa5-f90d11b4f20a";
+		String endpoint = "http://www.testendpoint.com/webhook";
+		MessageDigest digest = MessageDigest.getInstance("SHA-256");
+		digest.update(challengeCode.getBytes(StandardCharsets.UTF_8));
+		digest.update(verificationToken.getBytes(StandardCharsets.UTF_8));
+		byte[] bytes = digest.digest(endpoint.getBytes(StandardCharsets.UTF_8));
+		String expectedChallengeResponse = Hex.encodeHexString( bytes ) ;
+		ResponseEntity responseEntity =eventNotificationController.validate("a8628072-3d33-45ee-9004-bee86830a22d");
+		ChallengeResponse challengeResponse = (ChallengeResponse) responseEntity.getBody();
+		Assert.assertEquals(expectedChallengeResponse,challengeResponse.getChallengeResponse());
+	}
+
 }
