@@ -1,4 +1,4 @@
 client.credentials.file: /users/snbanerjee/tmp/ebay-config.yaml
 environment: PRODUCTION
-endpoint: https://protected-castle-98711.herokuapp.com/webhook
+endpoint: http://www.testendpoint.com/webhook
 verificationToken: 71745723-d031-455c-bfa5-f90d11b4f20a
