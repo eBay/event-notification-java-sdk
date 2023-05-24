@@ -75,3 +75,5 @@ components:
     AnyData: {}
     AccountDeletionData:
       $ref: definitions/data.yaml#/MarketplaceAccountDeletionData
+    PriorityListingRevisionData:
+      $ref: definitions/data.yaml#/PriorityListingRevisionData

@@ -22,7 +22,9 @@ import com.ebay.commerce.notification.constants.TopicEnum;
 import com.ebay.commerce.notification.exceptions.InitializationException;
 import com.ebay.commerce.notification.processor.AccountDeletionMessageProcessor;
 import com.ebay.commerce.notification.processor.MessageProcessorFactory;
+import com.ebay.commerce.notification.processor.PriorityListingRevisionMessageProcessor;
 import org.openapitools.client.model.AccountDeletionData;
+import org.openapitools.client.model.PriorityListingRevisionData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -94,6 +96,7 @@ public class EventNotificationConfig
 
     private void registerMessageProcessors() {
         processorFactory.register(TopicEnum.MARKETPLACE_ACCOUNT_DELETION, new AccountDeletionMessageProcessor(AccountDeletionData.class));
+        processorFactory.register(TopicEnum.PRIORITY_LISTING_REVISION, new PriorityListingRevisionMessageProcessor(PriorityListingRevisionData.class));
         // register other use case specific message processors here
     }
 

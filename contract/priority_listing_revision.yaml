@@ -1,0 +1,121 @@
+asyncapi: 2.0.0
+info:
+  title: eBay Notifications
+  version: 1.0.0
+  description: This contract defines eBay notification for PRIORITY_LISTING_REVISION
+channels:
+  PRIORITY_LISTING_REVISION:
+    subscribe:
+      message:
+        $ref: '#/components/messages/message'
+      bindings:
+        http:
+          type: request
+          method: POST
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                enum: ['application/json']
+components:
+  messages:
+    message:
+      headers:
+        type: object
+        properties:
+          X-EBAY-SIGNATURE:
+            description: ECC message signature
+            type: string
+      payload:
+        type: object
+        properties:
+          metadata:
+            $ref: '#/components/schemas/MetaData'
+          notification:
+            $ref: '#/components/schemas/Notification'
+
+  schemas:
+    MetaData:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: 'Topic subscribed to.'
+        schemaVersion:
+          type: string
+          description: 'The schema for this topic.'
+        deprecated:
+          type: boolean
+          description: 'If this is a deprecated schema or topic.'
+          default: 'false'
+
+    Notification:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: 'The notification Id.'
+        eventDate:
+          type: string
+          description: 'The event date associated with this notification in UTC.'
+        publishDate:
+          type: string
+          description: 'The message publish date in UTC.'
+        publishAttemptCount:
+          type: integer
+          description: 'The number of attempts made to publish this message.'
+        data:
+          $ref: '#/components/schemas/PriorityListingRevisionData'
+
+
+    PriorityListingRevisionData:
+      type: object
+      description: "The Priority Listing Revision payload."
+      properties:
+        itemId:
+          type: string
+          enum: "The id for the item."
+        primaryItemGroupId:
+          type: string
+          enum: "The unique identifier for the item group that contains this item."
+        listingMarketplaceId:
+          type: string
+          enum:
+            - "EBAY_US"
+            - "EBAY_GB"
+            - "EBAY_AU"
+            - "EBAY_AT"
+            - "EBAY_FR"
+            - "EBAY_DE"
+            - "EBAY_IT"
+            - "EBAY_BE"
+            - "EBAY_NL"
+            - "EBAY_ES"
+            - "EBAY_CH"
+            - "EBAY_HK"
+            - "EBAY_IE"
+            - "EBAY_MY"
+            - "EBAY_CA"
+            - "EBAY_PH"
+            - "EBAY_PL"
+            - "EBAY_SG"
+        seller:
+          type: object
+          description: "The information of the seller"
+          properties:
+            userName:
+              type: string
+              description: "The userName of the seller"
+            userId:
+              type: string
+              description: "The userId of the seller"
+        categoryId:
+          type: string
+          description: "The id for the category"
+        metaCategoryId:
+          type: string
+          description: "The id for the metaCategory"
+        priorityListing:
+          type: boolean
+          description: "Indicates if the item is priority listing or not"
