@@ -29,10 +29,9 @@ public class PriorityListingRevisionMessageProcessor extends BaseMessageProcesso
         PriorityListingRevisionData priorityListingRevisionData = (PriorityListingRevisionData) data;
         // do something with the correctly serialized data for this topic.
         StringBuilder sb = new StringBuilder();
-        sb.append("Data=> {\n");
-        sb.append("    itemId: ").append(priorityListingRevisionData.getItemId()).append("\n");
-        sb.append("    priorityListing: ").append(priorityListingRevisionData.getPriorityListing()).append("\n");
-        sb.append("}");
+        sb.append("Data=>");
+        sb.append("itemId: ").append(priorityListingRevisionData.getItemId());
+        sb.append(",priorityListing: ").append(priorityListingRevisionData.getPriorityListing());
         System.out.println(sb.toString());
     }
 }
