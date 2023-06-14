@@ -31,11 +31,6 @@ public class PriorityListingRevisionMessageProcessor extends BaseMessageProcesso
         StringBuilder sb = new StringBuilder();
         sb.append("Data=> {\n");
         sb.append("    itemId: ").append(priorityListingRevisionData.getItemId()).append("\n");
-        sb.append("    primaryItemGroupId: ").append(priorityListingRevisionData.getPrimaryItemGroupId()).append("\n");
-        sb.append("    listingMarketplaceId: ").append(priorityListingRevisionData.getListingMarketplaceId()).append("\n");
-        sb.append("    seller: ").append(priorityListingRevisionData.getSeller().toString()).append("\n");
-        sb.append("    categoryId: ").append(priorityListingRevisionData.getCategoryId()).append("\n");
-        sb.append("    metaCategoryId: ").append(priorityListingRevisionData.getMetaCategoryId()).append("\n");
         sb.append("    priorityListing: ").append(priorityListingRevisionData.getPriorityListing()).append("\n");
         sb.append("}");
         System.out.println(sb.toString());
