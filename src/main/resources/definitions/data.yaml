@@ -7,3 +7,25 @@ MarketplaceAccountDeletionData:
       type: string
     eiasToken:
       type: string
+PriorityListingRevisionData:
+  type: object
+  properties:
+    itemId:
+      type: string
+    primaryItemGroupId:
+      type: string
+    listingMarketplaceId:
+      type: string
+    seller:
+      type: object
+      properties:
+        userName:
+          type: string
+        userId:
+          type: string
+    categoryId:
+      type: string
+    metaCategoryId:
+      type: string
+    priorityListing:
+      type: boolean
